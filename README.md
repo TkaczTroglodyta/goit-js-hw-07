@@ -1,3 +1,3 @@
-# goit-js-hw-06
+# goit-js-hw-07
 
-https://tkacztroglodyta.github.io/goit-js-hw-06/
+https://tkacztroglodyta.github.io/goit-js-hw-07/
