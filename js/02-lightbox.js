@@ -14,9 +14,9 @@ const galleryMarkup = galleryItems.map(
           />
         </a>
       </li>`
-); // markup images into HTML page without 'data-source="${original}"'
+);
 
-galleryBoxes.insertAdjacentHTML('beforeend', galleryMarkup.join('')); // inserting markup into <ul> tag
+galleryBoxes.insertAdjacentHTML('beforeend', galleryMarkup.join(''));
 
 let galleryImages = new SimpleLightbox('.gallery a', {
   captionSelector: 'img',
