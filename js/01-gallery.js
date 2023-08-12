@@ -15,42 +15,10 @@ const galleryMarkup = galleryItems.map(
           />
         </a>
       </li>`
-); // markup images into HTML page
+);
 
-galleryBoxes.insertAdjacentHTML('beforeend', galleryMarkup.join('')); // inserting markup into <ul> tag
-galleryBoxes.addEventListener('click', handleGalleryClick); // images became clickable
-
-// >> BASIC VERSION without destructurisation and template literals <<
-
-// function handleGalleryClick(e) {
-//   e.preventDefault();
-//   if (e.target.nodeName !== 'IMG') {
-//     return;
-//   }
-
-//   // const modalImage = e.target.dataset.source; // to simplify further event target, however not necessary
-
-//   const instance = basicLightbox.create(
-//     `<img src="${e.target.dataset.source}" width="800" heigth="534">`,
-//     {
-//       onShow: () => {
-//         document.addEventListener('keydown', handleImgClose);
-//       },
-//       onclose: () => {
-//         document.addEventListener('keydown', handleImgClose);
-//       },
-//     }
-//   );
-
-//   function handleImgClose(e) {
-//     if (e.code === 'Escape') {
-//       instance.close();
-//     }
-//   }
-//   instance.show();
-// }
-
-// >> BETTER VERSION with destructurisation and template literals and arrow functions instead 'function handleImgClose(e)' <<
+galleryBoxes.insertAdjacentHTML('beforeend', galleryMarkup.join(''));
+galleryBoxes.addEventListener('click', handleGalleryClick);
 
 function handleGalleryClick(e) {
   e.preventDefault();
@@ -73,4 +41,4 @@ function handleGalleryClick(e) {
   instance.show();
 }
 
-// console.log(galleryItems);
+console.log(galleryItems);
