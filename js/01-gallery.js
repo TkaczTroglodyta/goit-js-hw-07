@@ -15,9 +15,39 @@ const galleryMarkup = galleryItems.map(
           />
         </a>
       </li>`
-);
+); // markup images into HTML page
 
-gallery.insertAdjacentHTML('beforeend', galleryMarkup.join(''));
-gallery.addEventListener('click', handleGalleryClick);
+galleryBoxes.insertAdjacentHTML('beforeend', galleryMarkup.join('')); // inserting markup into <ul> tag
+galleryBoxes.addEventListener('click', handleGalleryClick); // images became clickable
 
-console.log(galleryItems);
+// basic version without destructurisation and template literals
+
+function handleGalleryClick(e) {
+  e.preventDefault();
+  if (e.target.nodeName !== 'IMG') {
+    return;
+  }
+
+  // const modalImage = e.target.dataset.source; // to simplify further event target, however not neccesary
+
+  const instance = basicLightbox.create(
+    `<img src="${e.target.dataset.source}" width="800" heigth="534">`,
+    {
+      onShow: () => {
+        document.addEventListener('keydown', handleImgClose);
+      },
+      onclose: () => {
+        document.addEventListener('keydown', handleImgClose);
+      },
+    }
+  );
+
+  function handleImgClose(e) {
+    if (e.code === 'Escape') {
+      instance.close();
+    }
+  }
+  instance.show();
+}
+
+// console.log(galleryItems);
