@@ -50,7 +50,7 @@ galleryBoxes.addEventListener('click', handleGalleryClick); // images became cli
 //   instance.show();
 // }
 
-// >> BETTER VERSION with destructurisation and template literals <<
+// >> BETTER VERSION with destructurisation and template literals and arrow functions instead 'function handleImgClose(e)' <<
 
 function handleGalleryClick(e) {
   e.preventDefault();
