@@ -22,7 +22,7 @@ let galleryImages = new SimpleLightbox('.gallery a', {
   captionSelector: 'img',
   captionsData: 'alt',
   captionPosition: 'bottom',
-  captionDelay: 450,
+  captionDelay: 250,
   scrollZoom: false,
   scaleImageToRatio: true,
 });
