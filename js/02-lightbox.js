@@ -22,8 +22,9 @@ let galleryImages = new SimpleLightbox('.gallery a', {
   captionSelector: 'img',
   captionsData: 'alt',
   captionPosition: 'bottom',
-  captionDelay: 250,
+  captionDelay: 450,
   scrollZoom: false,
+  scaleImageToRatio: true,
 });
 
 console.log(galleryItems);
