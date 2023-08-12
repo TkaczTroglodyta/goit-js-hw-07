@@ -20,33 +20,56 @@ const galleryMarkup = galleryItems.map(
 galleryBoxes.insertAdjacentHTML('beforeend', galleryMarkup.join('')); // inserting markup into <ul> tag
 galleryBoxes.addEventListener('click', handleGalleryClick); // images became clickable
 
-// basic version without destructurisation and template literals
+// >> BASIC VERSION without destructurisation and template literals <<
+
+// function handleGalleryClick(e) {
+//   e.preventDefault();
+//   if (e.target.nodeName !== 'IMG') {
+//     return;
+//   }
+
+//   // const modalImage = e.target.dataset.source; // to simplify further event target, however not necessary
+
+//   const instance = basicLightbox.create(
+//     `<img src="${e.target.dataset.source}" width="800" heigth="534">`,
+//     {
+//       onShow: () => {
+//         document.addEventListener('keydown', handleImgClose);
+//       },
+//       onclose: () => {
+//         document.addEventListener('keydown', handleImgClose);
+//       },
+//     }
+//   );
+
+//   function handleImgClose(e) {
+//     if (e.code === 'Escape') {
+//       instance.close();
+//     }
+//   }
+//   instance.show();
+// }
+
+// >> BETTER VERSION with destructurisation and template literals <<
 
 function handleGalleryClick(e) {
   e.preventDefault();
-  if (e.target.nodeName !== 'IMG') {
+  const { target } = e;
+  if (target.nodeName !== 'IMG') {
     return;
   }
 
-  // const modalImage = e.target.dataset.source; // to simplify further event target, however not neccesary
+  const { source } = target.dataset;
+  const instance = basicLightbox.create(`<img src="${source}" width="800" heigth="534">`, {
+    onShow: () => document.addEventListener('keydown', handleImgClose),
+    onclose: () => document.removeEventListener('keydown', handleImgClose),
+  });
 
-  const instance = basicLightbox.create(
-    `<img src="${e.target.dataset.source}" width="800" heigth="534">`,
-    {
-      onShow: () => {
-        document.addEventListener('keydown', handleImgClose);
-      },
-      onclose: () => {
-        document.addEventListener('keydown', handleImgClose);
-      },
-    }
-  );
-
-  function handleImgClose(e) {
+  const handleImgClose = e => {
     if (e.code === 'Escape') {
       instance.close();
     }
-  }
+  };
   instance.show();
 }
 
